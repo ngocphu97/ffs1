@@ -15,7 +15,7 @@ namespace FastFoodStore.Models
         public int Status { get; set; }
         public string Buyer { get; set; }
         public long Total { get; set; }
-
+        //lakjlf
         public virtual ICollection<OrderProductDetail> OrderProductDetails { get; set; }
     }
 }
