@@ -1,0 +1,45 @@
+﻿@model IEnumerable<FastFoodStore.Models.OrderProductDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderProductDetailID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrerProductID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderProductDetailID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrerProductID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.OrderProductDetailID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.OrderProductDetailID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.OrderProductDetailID })
+        </td>
+    </tr>
+}
+
+</table>

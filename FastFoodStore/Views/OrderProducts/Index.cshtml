@@ -1,0 +1,95 @@
+﻿@model IEnumerable<FastFoodStore.Models.OrderProduct>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div>
+    @using (Html.BeginForm())
+    {
+        <div class="pull-left">
+            <p>
+                Find by Buyer: @Html.TextBox("SearchString")
+                <button class="btn btn-info" type="submit">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </p>
+        </div>
+    }
+    <div class="pull-right" style="margin-right:5px;">
+        <a href="@Url.Action("Create", "OrderProducts")" class="btn btn-info">
+            <i class="glyphicon glyphicon-edit"></i>
+            Add new
+        </a>
+        @*@Html.ActionLink("Create New", "Create")*@
+    </div>
+
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("DateIn", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Buyer", "Index", new { sortOrder = ViewBag.NameSortParm })
+            @*@Html.DisplayNameFor(model => model.Buyer)*@
+        </th>
+        <th>
+            @Html.ActionLink("Total", "Index", new { sortOrder = ViewBag.NameSortParm })
+            @*@Html.DisplayNameFor(model => model.Total)*@
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Buyer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "OrderProducts", new { id = item.ID })" class="btn btn-info">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+
+                @*<a href="@Url.Action("Details", "OrderProductDetails", new { id = item.ID })" class="btn btn-info">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                </a>*@
+
+                <a href="@Url.Action("Idex", "OrderProductDetails")" class="btn btn-info">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                </a>
+
+                <a href="@Url.Action("Delete", "OrderProducts", new { id = item.ID })" class="btn btn-info">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>

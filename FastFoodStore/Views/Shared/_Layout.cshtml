@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - L-P-P's FastFood Store - </title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="../../Content/dashboard.css" rel="stylesheet" />
+
+</head>
+
+@* navs *@
+
+
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <!-- Use any element to open the sidenav -->
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @* ==================================================== *@
+
+                    @* ==================================================== *@
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="mySidenav" class="sidenav">
+        @Html.ActionLink("F*-Product", "Index", "Products")
+        @Html.ActionLink("F*-Order", "Index", "OrderProducts")
+        @Html.ActionLink("F*-Promotion", "Index", "Promotions")
+        @Html.ActionLink("F*-Menu", "Index", "Menu")
+        @Html.ActionLink("F*-Other", "Index", "Other")
+    </div>
+    <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+    <div id="main">
+        @RenderBody()
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+</body>
+</html>
