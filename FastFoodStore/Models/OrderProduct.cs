@@ -8,10 +8,6 @@ namespace FastFoodStore.Models
 {
     public class OrderProduct 
     {
-        public enum orderProductDetails
-        {
-            
-        }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }

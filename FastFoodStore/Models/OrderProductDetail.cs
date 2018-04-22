@@ -5,10 +5,6 @@ using System.Web;
 
 namespace FastFoodStore.Models
 {
-    public enum Grade
-    {
-        A, B, C, D, F
-    }
 
     public class OrderProductDetail
     {

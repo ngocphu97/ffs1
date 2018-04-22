@@ -26,6 +26,12 @@ namespace FastFoodStore.DAL
             products.ForEach(s => context.Products.Add(s));
             context.SaveChanges();
 
+            //public void addToObject()
+            //{
+            //    List<Vars> variable = new List<Vars>();
+            //    variable.Add(new Vars { Id = "var1", Names = new List<string>() { "n1", "n2", "n3", "n4" } });
+            //}
+
 
             var orderProduct = new List<OrderProduct>
             {
