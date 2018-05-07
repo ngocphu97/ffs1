@@ -11,5 +11,6 @@ namespace FastFoodStore.Models
         public int OrderProductDetailID { get; set; }
         public int OrerProductID { get; set; }
         public int Amount { get; set; }
+        public virtual OrderProduct OrderProduct { get; set; }
     }
 }

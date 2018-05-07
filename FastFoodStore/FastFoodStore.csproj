@@ -148,7 +148,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\ExportDetailsController.cs" />
+    <Compile Include="Controllers\ExportProductsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImportDetailsController.cs" />
+    <Compile Include="Controllers\ImportProductsController.cs" />
     <Compile Include="Controllers\OrderProductDetailsController.cs" />
     <Compile Include="Controllers\OrderProductsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -157,10 +162,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\ExportDetail.cs" />
+    <Compile Include="Models\ExportProduct.cs" />
+    <Compile Include="Models\ImportDetail.cs" />
+    <Compile Include="Models\ImportProducts.cs" />
     <Compile Include="Models\OrderProduct.cs" />
     <Compile Include="Models\OrderProductDetail.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\Promotion.cs" />
+    <Compile Include="Models\Staff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -217,6 +227,31 @@
     <Content Include="Views\OrderProductDetails\Details.cshtml" />
     <Content Include="Views\OrderProductDetails\Edit.cshtml" />
     <Content Include="Views\OrderProductDetails\Index.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\ExportDetails\Create.cshtml" />
+    <Content Include="Views\ExportDetails\Delete.cshtml" />
+    <Content Include="Views\ExportDetails\Details.cshtml" />
+    <Content Include="Views\ExportDetails\Edit.cshtml" />
+    <Content Include="Views\ExportDetails\Index.cshtml" />
+    <Content Include="Views\ExportProducts\Create.cshtml" />
+    <Content Include="Views\ExportProducts\Delete.cshtml" />
+    <Content Include="Views\ExportProducts\Details.cshtml" />
+    <Content Include="Views\ExportProducts\Edit.cshtml" />
+    <Content Include="Views\ExportProducts\Index.cshtml" />
+    <Content Include="Views\ImportDetails\Create.cshtml" />
+    <Content Include="Views\ImportDetails\Delete.cshtml" />
+    <Content Include="Views\ImportDetails\Details.cshtml" />
+    <Content Include="Views\ImportDetails\Edit.cshtml" />
+    <Content Include="Views\ImportDetails\Index.cshtml" />
+    <Content Include="Views\ImportProducts\Create.cshtml" />
+    <Content Include="Views\ImportProducts\Delete.cshtml" />
+    <Content Include="Views\ImportProducts\Details.cshtml" />
+    <Content Include="Views\ImportProducts\Edit.cshtml" />
+    <Content Include="Views\ImportProducts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,7 +8,6 @@ namespace FastFoodStore.Models
 {
     public class OrderProduct 
     {
-
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
         public DateTime DateIn { get; set; }
@@ -17,5 +16,6 @@ namespace FastFoodStore.Models
         public long Total { get; set; }
         //lakjlf
         public virtual ICollection<OrderProductDetail> OrderProductDetails { get; set; }
+        public virtual Staff Staff { get; set; }
     }
 }

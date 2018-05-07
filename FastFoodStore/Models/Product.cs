@@ -9,8 +9,10 @@ namespace FastFoodStore.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public string Category { get; set; }
+        public string CategoryID { get; set; }
         public long Price { get; set; }
         public string Images { get; set; }
+        public virtual OrderProductDetail OrderProductDetail { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

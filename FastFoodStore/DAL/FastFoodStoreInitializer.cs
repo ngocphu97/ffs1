@@ -12,16 +12,16 @@ namespace FastFoodStore.DAL
         {
             var products = new List<Product>
             {
-                new Product{ ID=1, Name="Ga ran 1", Category="ABC", Price=99000, Images="garan1.png",},
-                new Product{ ID=2, Name="Ga chien 2", Category="ABC", Price=19000, Images="garan2.jpg",},
-                new Product{ ID=3, Name="Ga xoi mo 3", Category="ABC", Price=29000, Images="garan3.jpg",},
-                new Product{ ID=4, Name="Ga ham 4", Category="ABC", Price=39000, Images="garan4.jpg",},
-                new Product{ ID=5, Name="Ga hap 5", Category="ABC", Price=49000, Images="garan5.jpg",},
-                new Product{ ID=6, Name="Ga nuong 6", Category="ABC", Price=59000, Images="garan6.jpg",},
-                new Product{ ID=7, Name="Ga lan bot 7", Category="ABC", Price=59000, Images="garan7.jpg",},
-                new Product{ ID=8, Name="Ga lan kem 8", Category="ABC", Price=69000, Images="garan8.jpg",},
-                new Product{ ID=9, Name="Ga com 9", Category="ABC", Price=99000, Images="garan9.png",},
-                new Product{ ID=10, Name="Ga xao 10", Category="ABC", Price=199000, Images="garan10.jpg",},
+                new Product{ ID=1, Name="Ga ran 1", CategoryID="ABC", Price=99000, Images="garan1.png",},
+                new Product{ ID=2, Name="Ga chien 2", CategoryID="ABC", Price=19000, Images="garan2.jpg",},
+                new Product{ ID=3, Name="Ga xoi mo 3", CategoryID="ABC", Price=29000, Images="garan3.jpg",},
+                new Product{ ID=4, Name="Ga ham 4", CategoryID="ABC", Price=39000, Images="garan4.jpg",},
+                new Product{ ID=5, Name="Ga hap 5", CategoryID="ABC", Price=49000, Images="garan5.jpg",},
+                new Product{ ID=6, Name="Ga nuong 6", CategoryID="ABC", Price=59000, Images="garan6.jpg",},
+                new Product{ ID=7, Name="Ga lan bot 7", CategoryID="ABC", Price=59000, Images="garan7.jpg",},
+                new Product{ ID=8, Name="Ga lan kem 8", CategoryID="ABC", Price=69000, Images="garan8.jpg",},
+                new Product{ ID=9, Name="Ga com 9", CategoryID="ABC", Price=99000, Images="garan9.png",},
+                new Product{ ID=10, Name="Ga xao 10", CategoryID="ABC", Price=199000, Images="garan10.jpg",},
             };
             products.ForEach(s => context.Products.Add(s));
             context.SaveChanges();
@@ -64,8 +64,77 @@ namespace FastFoodStore.DAL
             orderProductDetails.ForEach(s => context.OrderProductDetail.Add(s));
             context.SaveChanges();
 
+            var staffs = new List<Staff>
+            {
+                new Staff{StaffID=1, Name="Phu", Role=0, PhoneNumber="0123456789" },
+                new Staff{StaffID=2, Name="Long lun", Role=1, PhoneNumber="0123456789" },
+                new Staff{StaffID=3, Name="Long cao", Role=1, PhoneNumber="0123456789" },
+                new Staff{StaffID=4, Name="Phu 1", Role=0, PhoneNumber="0123456789" },
+                new Staff{StaffID=5, Name="Phu 2", Role=1, PhoneNumber="0123456789" },
+            };
+            staffs.ForEach(s => context.Staff.Add(s));
+            context.SaveChanges();
 
 
+            var cartegories = new List<Category>
+            {
+                new Category{CategoryID=1, Name="Cate Ga Ran 1"},
+                new Category{CategoryID=2, Name="Cate Ga Ran 2"},
+                new Category{CategoryID=3, Name="Cate Ga Ran 3"},
+                new Category{CategoryID=4, Name="Cate Ga Ran 4"},
+                new Category{CategoryID=5, Name="Cate Ga Ran 5"},
+            };
+            cartegories.ForEach(s => context.Category.Add(s));
+            context.SaveChanges();
+
+
+            var importProducts = new List<ImportProducts>
+            {
+                new ImportProducts{ImportProductsID=1, Date=DateTime.Parse("2018-09-01"), StaffID=1 },
+                new ImportProducts{ImportProductsID=2, Date=DateTime.Parse("2018-09-01"), StaffID=2 },
+                new ImportProducts{ImportProductsID=3, Date=DateTime.Parse("2018-09-01"), StaffID=3 },
+                new ImportProducts{ImportProductsID=4, Date=DateTime.Parse("2018-09-01"), StaffID=1 },
+                new ImportProducts{ImportProductsID=5, Date=DateTime.Parse("2018-09-01"), StaffID=2 },
+            };
+            importProducts.ForEach(s => context.ImportProducts.Add(s));
+            context.SaveChanges();
+
+            var exportProducts = new List<ExportProduct>
+            {
+                new ExportProduct{ExportProductID=1, Date=DateTime.Parse("2018-09-01"), StaffID=1 },
+                new ExportProduct{ExportProductID=2, Date=DateTime.Parse("2018-09-01"), StaffID=2 },
+                new ExportProduct{ExportProductID=3, Date=DateTime.Parse("2018-09-01"), StaffID=3 },
+                new ExportProduct{ExportProductID=4, Date=DateTime.Parse("2018-09-01"), StaffID=1 },
+                new ExportProduct{ExportProductID=5, Date=DateTime.Parse("2018-09-01"), StaffID=2 },
+            };
+            exportProducts.ForEach(s => context.ExportProduct.Add(s));
+            context.SaveChanges();
+
+            var detailImportProduct = new List<ImportDetail>
+            {
+                new ImportDetail{ImportDetailID=1, ImportID=1, Amount=10, ProductID=1, },
+                new ImportDetail{ImportDetailID=2, ImportID=1, Amount=20, ProductID=2, },
+                new ImportDetail{ImportDetailID=3, ImportID=1, Amount=10, ProductID=3, },
+
+                new ImportDetail{ImportDetailID=4, ImportID=2, Amount=10, ProductID=1, },
+                new ImportDetail{ImportDetailID=5, ImportID=2, Amount=10, ProductID=2, },
+                new ImportDetail{ImportDetailID=6, ImportID=2, Amount=10, ProductID=3, },
+            };
+            detailImportProduct.ForEach(s => context.ImportDetail.Add(s));
+            context.SaveChanges();
+
+            var detailExportProduct = new List<ExportDetail>
+            {
+                new ExportDetail{ExportDetailID=1, ExportID=1, Amount=10, ProductID=1, },
+                new ExportDetail{ExportDetailID=2, ExportID=1, Amount=20, ProductID=2, },
+                new ExportDetail{ExportDetailID=3, ExportID=1, Amount=10, ProductID=3, },
+
+                new ExportDetail{ExportDetailID=4, ExportID=2, Amount=10, ProductID=1, },
+                new ExportDetail{ExportDetailID=5, ExportID=2, Amount=10, ProductID=2, },
+                new ExportDetail{ExportDetailID=6, ExportID=2, Amount=10, ProductID=3, },
+            };
+            detailExportProduct.ForEach(s => context.ExportDetail.Add(s));
+            context.SaveChanges();
         }
     }
 }
