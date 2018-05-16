@@ -1,0 +1,73 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Blank</title>
+    @Styles.Render("~/vendor/bootstrap/css/bootstrap.min.css")
+    @Styles.Render("~/vendor/metisMenu/metisMenu.min.css")
+    @Styles.Render("~/Content/sb-admin-2.css")
+    @Styles.Render("~/Content/bootstrap-datetimepicker.css")
+    @Styles.Render("~/Content/bootstrap-datetimepicker.min.css")
+    @Styles.Render("~/Content/bootstrap-datetimepicker-standalone.css")
+    @Styles.Render("~/vendor/font-awesome/css/font-awesome.min.css")
+    @Styles.Render("~/vendor/datatables-plugins/dataTables.bootstrap.css")
+    @Styles.Render("~/vendor/datatables-responsive/dataTables.responsive.css")
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script>
+          WebFont.load({
+            google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
+            active: function() {
+                sessionStorage.fonts = true;
+            }
+          });
+    </script>
+    @Styles.Render("~/static/backend/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css")
+    
+    <!--Base Styles -->
+    @Styles.Render("~/static/backend/assets/vendors/base/vendors.bundle.css")
+    @Styles.Render("~/static/backend/assets/demo/demo9/base/style.bundle.css")
+    @Styles.Render("~/static/backend/assets/demo/demo9/media/img/logo/favicon.ico")
+</head>
+<body class="m--skin- m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--signin m-login--2 m-login-2--skin-2" id="m_login" style="background-image: url('../../static/backend/assets/app/media/img//bg/bg-3.jpg');">
+            <div class="m-grid__item m-grid__item--fluid	m-login__wrapper">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    @Styles.Render("~/static/backend/assets/vendors/base/vendors.bundle.js")
+    @Styles.Render("~/static/backend/assets/demo/demo9/base/scripts.bundle.js")
+    @Styles.Render("~/static/backend/assets/vendors/base/vendors.bundle.css")
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+    @Scripts.Render("~/vendor/jquery/jquery.min.js")
+    @Scripts.Render("~/vendor/bootstrap/js/bootstrap.min.js")
+    @Scripts.Render("~/vendor/metisMenu/metisMenu.min.js")
+    @Scripts.Render("~/Scripts/nhapkho.js")
+    @Scripts.Render("~/Scripts/test.js")
+    @Scripts.Render("~/Scripts/sb-admin-2.js")
+    @Scripts.Render("~/Scripts/bootstrap-datetimepicker.js")
+    @Scripts.Render("~/Scripts/bootstrap-datetimepicker.min.js")
+    @Scripts.Render("~/vendor/datatables/js/jquery.dataTables.min.js")
+    @Scripts.Render("~/vendor/datatables-plugins/dataTables.bootstrap.min.js")
+    @Scripts.Render("~/vendor/datatables-responsive/dataTables.responsive.js")
+    @*@Scripts.Render("~/static/backend/js/login/login.js")*@
+</body>
+</html>

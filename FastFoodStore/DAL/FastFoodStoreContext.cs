@@ -22,6 +22,7 @@ namespace FastFoodStore.DAL
         public DbSet<ImportDetail> ImportDetail { get; set; }
         public DbSet<ImportProducts> ImportProducts { get; set; }
         public DbSet<Staff> Staff { get; set; }
+        public DbSet<UserAccount> User { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

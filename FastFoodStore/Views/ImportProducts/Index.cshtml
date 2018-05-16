@@ -1,45 +1,85 @@
-﻿@model IEnumerable<FastFoodStore.Models.ImportProducts>
+﻿@model FastFoodStore.ViewModels.ImportIndexData
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "ImportProduct";
 }
+<div class="container-fluid">
+    <h2>Index</h2>
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Staff.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Total)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Staff.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Total)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ImportProductsID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ImportProductsID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ImportProductsID })
-        </td>
-    </tr>
-}
-
-</table>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Date
+            </th>
+            <th>
+                Total
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.ImportProductss)
+        {
+            string selectedRow = "";
+            if (item.ImportProductsID == ViewBag.ImportProductID)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    @Html.ActionLink("Select", "Index", new { id = item.ImportProductsID }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ImportProductsID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ImportProductsID })
+                    |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ImportProductsID })
+                </td>
+            </tr>
+        }
+        @*@foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Staff.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.ImportProductsID }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.ImportProductsID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.ImportProductsID })
+                    </td>
+                </tr>
+            }*@
+    </table>
+    @if (Model.ImportDetails != null)
+    {
+        <h3>ImportDetail Selected ImportProduct</h3>
+        <table class="table">
+            <tr>
+                <th>ProductID</th>
+                <th>Amount</th>
+            </tr>
+            @foreach (var item in Model.ImportDetails)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+</div>

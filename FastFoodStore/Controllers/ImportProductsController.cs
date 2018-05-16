@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using FastFoodStore.DAL;
 using FastFoodStore.Models;
+using FastFoodStore.ViewModels;
 
 namespace FastFoodStore.Controllers
 {
@@ -16,10 +17,21 @@ namespace FastFoodStore.Controllers
         private FastFoodStoreContext db = new FastFoodStoreContext();
 
         // GET: ImportProducts
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            var importProducts = db.ImportProducts.Include(i => i.Staff);
-            return View(importProducts.ToList());
+            //var importProducts = db.ImportProducts.Include(i => i.Staff);
+            //return View(importProducts.ToList());
+
+            var viewModel = new ImportIndexData();
+            viewModel.ImportProductss = db.ImportProducts.Include(i => i.ImportDetail);
+
+            if (id != null)
+            {
+                ViewBag.ImportProductID = id.Value;
+                viewModel.ImportDetails = viewModel.ImportProductss.Where(
+                i => i.ImportProductsID == id.Value).Single().ImportDetail;
+            }
+            return View(viewModel);
         }
 
         // GET: ImportProducts/Details/5
