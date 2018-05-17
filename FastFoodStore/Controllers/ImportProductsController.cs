@@ -22,18 +22,52 @@ namespace FastFoodStore.Controllers
             //var importProducts = db.ImportProducts.Include(i => i.Staff);
             //return View(importProducts.ToList());
 
+
             var viewModel = new ImportIndexData();
             viewModel.ImportProductss = db.ImportProducts.Include(i => i.ImportDetail);
 
             if (id != null)
             {
                 ViewBag.ImportProductID = id.Value;
-                viewModel.ImportDetails = viewModel.ImportProductss.Where(
-                i => i.ImportProductsID == id.Value).Single().ImportDetail;
+                //viewModel.ImportDetails = viewModel.ImportProductss.Where(
+                //i => i.ImportProductsID == id.Value).Single().ImportDetail;
+                viewModel.ImportDetails = db.ImportDetail.Where(i => i.ImportID == id.Value);
             }
             return View(viewModel);
         }
+        public ActionResult SaveImport(int staffid,DateTime date,float total,ImportDetail[] import)
+        {
+            String sMonth = DateTime.Now.Month.ToString();
+            String sDay = DateTime.Now.Day.ToString();
+            String sgio = DateTime.Now.Hour.ToString();
+            String sggiay = DateTime.Now.Second.ToString();
+            String ID = sMonth + sDay+ sgio+ sggiay;
+            int importid = int.Parse(ID.ToString());
+            string result = "Error! Order Is Not Complete!";
+            if (date != null && import != null)
+            {
+                ImportProducts model = new ImportProducts();
+                model.ImportProductsID = importid;
+                model.StaffID = staffid;
+                model.Date = date;
+                model.Total = total;
+                db.ImportProducts.Add(model);
 
+                foreach (var item in import)
+                {
+                    ImportDetail O = new ImportDetail();
+                    O.ProductID = item.ProductID;
+                    O.Amount = item.Amount;
+                    O.PriceImport = item.PriceImport;
+                    O.ImportID = importid;
+                    O.ImportProducts.ImportProductsID = importid;
+                    db.ImportDetail.Add(O);
+                }
+                db.SaveChanges();
+                result = "Success! Order Is Complete!";
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
         // GET: ImportProducts/Details/5
         public ActionResult Details(int? id)
         {
@@ -65,7 +99,7 @@ namespace FastFoodStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ImportProducts.Add(importProducts);
+                db.ImportProducts.Add(importProducts);  
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -65,7 +65,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="typography.html">
+                        <a href="@Url.Action("Index", "ImportProducts")">
                             <i class="pe-7s-culture"></i>
                             <p>Kho</p>
                         </a>
@@ -230,5 +230,6 @@
 
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src="assets/js/demo.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>
