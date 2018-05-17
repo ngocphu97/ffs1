@@ -64,6 +64,17 @@ namespace FastFoodStore.DAL
             orderProductDetails.ForEach(s => context.OrderProductDetail.Add(s));
             context.SaveChanges();
 
+            var orderProductDetails2 = new List<OrderProductDetail2>
+            {
+                new OrderProductDetail2 { OrderProductDetail2ID=1, OrerProductID=1,ProductID=1, Amount=1, },
+                new OrderProductDetail2 { OrderProductDetail2ID=1, OrerProductID=2,ProductID=2, Amount=2, },
+                new OrderProductDetail2 { OrderProductDetail2ID=1, OrerProductID=3,ProductID=3, Amount=3, },
+                new OrderProductDetail2 { OrderProductDetail2ID=1, OrerProductID=4,ProductID=4, Amount=4, },
+
+            };
+            orderProductDetails2.ForEach(s => context.OrderProductDetail2.Add(s));
+            context.SaveChanges();
+
             var staffs = new List<Staff>
             {
                 new Staff{StaffID=1, Name="Phu", Role=0, PhoneNumber="0123456789" },

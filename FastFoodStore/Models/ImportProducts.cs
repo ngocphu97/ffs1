@@ -13,5 +13,6 @@ namespace FastFoodStore.Models
         public float Total { get; set; }
         public virtual ICollection<ImportDetail> ImportDetail { get; set; }
         public virtual Staff Staff { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

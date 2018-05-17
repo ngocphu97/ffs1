@@ -12,7 +12,6 @@ namespace FastFoodStore.Models
         public string CategoryID { get; set; }
         public long Price { get; set; }
         public string Images { get; set; }
-        public virtual OrderProductDetail OrderProductDetail { get; set; }
         public virtual Category Category { get; set; }
     }
 }

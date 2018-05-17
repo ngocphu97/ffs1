@@ -16,6 +16,7 @@ namespace FastFoodStore.DAL
         public DbSet<Product> Products { get; set; }
         public DbSet<OrderProduct> OrderProduct { get; set; }
         public DbSet<OrderProductDetail> OrderProductDetail { get; set; }
+        public DbSet<OrderProductDetail2> OrderProductDetail2 { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<ExportDetail> ExportDetail { get; set; }
         public DbSet<ExportProduct> ExportProduct { get; set; }

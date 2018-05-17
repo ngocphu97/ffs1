@@ -42,16 +42,17 @@ namespace FastFoodStore.Controllers
             String sgio = DateTime.Now.Hour.ToString();
             String sggiay = DateTime.Now.Second.ToString();
             String ID = sMonth + sDay+ sgio+ sggiay;
-            int importid = int.Parse(ID.ToString());
+            //int importid = int.Parse(ID.ToString());
             string result = "Error! Order Is Not Complete!";
             if (date != null && import != null)
             {
                 ImportProducts model = new ImportProducts();
-                model.ImportProductsID = importid;
                 model.StaffID = staffid;
                 model.Date = date;
                 model.Total = total;
                 db.ImportProducts.Add(model);
+                db.SaveChanges();
+                int id = model.ImportProductsID;
 
                 foreach (var item in import)
                 {
@@ -59,12 +60,11 @@ namespace FastFoodStore.Controllers
                     O.ProductID = item.ProductID;
                     O.Amount = item.Amount;
                     O.PriceImport = item.PriceImport;
-                    O.ImportID = importid;
-                    O.ImportProducts.ImportProductsID = importid;
+                    O.ImportID = id;
                     db.ImportDetail.Add(O);
                 }
                 db.SaveChanges();
-                result = "Success! Order Is Complete!";
+                result = "Success! Import Is Complete!";
             }
             return Json(result, JsonRequestBehavior.AllowGet);
         }

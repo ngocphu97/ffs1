@@ -1,7 +1,7 @@
-﻿@model IEnumerable<FastFoodStore.Models.OrderProduct>
+﻿@model FastFoodStore.ViewModels.OrderIndexData
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "OrderProduct";
 }
 
 <h2>Index</h2>
@@ -22,14 +22,6 @@
             </p>
         </div>
     }
-    <div class="pull-right" style="margin-right:5px;">
-        <a href="@Url.Action("Create", "OrderProducts")" class="btn btn-info">
-            <i class="glyphicon glyphicon-edit"></i>
-            Add new
-        </a>
-        @*@Html.ActionLink("Create New", "Create")*@
-    </div>
-
 </div>
 
 <table class="table">
@@ -54,9 +46,14 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.OrderProducts)
     {
-        <tr>
+        string selectedRow = "";
+        if (item.ID == ViewBag.OrderProductID)
+        {
+            selectedRow = "success";
+        }
+        <tr class="@selectedRow">
             <td>
                 @Html.DisplayFor(modelItem => item.ID)
             </td>
@@ -73,6 +70,7 @@
                 @Html.DisplayFor(modelItem => item.Total)
             </td>
             <td>
+                @Html.ActionLink("Select", "Index", new { id = item.ID }) |
                 <a href="@Url.Action("Edit", "OrderProducts", new { id = item.ID })" class="btn btn-info">
                     <i class="glyphicon glyphicon-edit"></i>
                 </a>
@@ -93,3 +91,24 @@
     }
 
 </table>
+@if (Model.OrderProductDetails != null)
+{
+    <h3>OrderDetail Selected OrderProduct</h3>
+        <table class="table">
+            <tr>
+                <th>ProductID</th>
+                <th>Amount</th>
+            </tr>
+            @foreach (var item in Model.OrderProductDetails)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                </tr>
+            }
+        </table>
+}

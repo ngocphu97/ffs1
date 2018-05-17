@@ -8,14 +8,13 @@ namespace FastFoodStore.Models
 {
     public class OrderProduct 
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
         public DateTime DateIn { get; set; }
         public int Status { get; set; }
         public string Buyer { get; set; }
         public long Total { get; set; }
         //lakjlf
-        public virtual ICollection<OrderProductDetail> OrderProductDetails { get; set; }
+        public virtual ICollection<OrderProductDetail2> OrderProductDetails { get; set; }
         public virtual Staff Staff { get; set; }
     }
 }

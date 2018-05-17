@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using FastFoodStore.DAL;
 using FastFoodStore.Models;
+using FastFoodStore.ViewModels;
 
 namespace FastFoodStore.Controllers
 {
@@ -16,48 +17,47 @@ namespace FastFoodStore.Controllers
         private FastFoodStoreContext db = new FastFoodStoreContext();
 
         // GET: OrderProducts
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(int? id)
         {
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "ID_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "DateIn" ? "date_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Status" ? "stt_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Buyer" ? "buyer_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Total" ? "total_desc" : "";
-            
-            var orderProducts = from s in db.OrderProduct
-                           select s;
+            var viewModel = new OrderIndexData();
+            viewModel.OrderProducts = db.OrderProduct.Include(i => i.OrderProductDetails);
 
-
-            if (!String.IsNullOrEmpty(searchString))
+            if (id != null)
             {
-                orderProducts = orderProducts.Where(s => s.Buyer.Contains(searchString));
+                ViewBag.OrderProductID = id.Value;
+                //viewModel.ImportDetails = viewModel.ImportProductss.Where(
+                //i => i.ImportProductsID == id.Value).Single().ImportDetail;
+                viewModel.OrderProductDetails = db.OrderProductDetail2.Where(i => i.OrerProductID == id.Value);
             }
-
-            switch (sortOrder)
-            {
-                case "ID_desc":
-                    orderProducts = orderProducts.OrderByDescending(s => s.ID);
-                    break;
-                case "date_desc":
-                    orderProducts = orderProducts.OrderByDescending(s => s.DateIn);
-                    break;
-                case "stt_desc":
-                    orderProducts = orderProducts.OrderByDescending(s => s.Status);
-                    break;
-                case "buyer_desc":
-                    orderProducts = orderProducts.OrderByDescending(s => s.Buyer);
-                    break;
-                case "total_desc":
-                    orderProducts = orderProducts.OrderByDescending(s => s.Total);
-                    break;
-
-                default:
-                    orderProducts = orderProducts.OrderBy(s => s.ID);
-                    break;
-            }
-            return View(orderProducts.ToList());
+            return View(viewModel);
         }
+        public ActionResult SaveOrder(String buyer, DateTime date, long total, OrderProductDetail2[] order)
+        {
+            string result = "Error! Order Is Not Complete!";
+            if (date != null && order != null)
+            {
+                OrderProduct model = new OrderProduct();
+                model.Buyer = buyer;
+                model.Status = 0;
+                model.DateIn = date;
+                model.Total = total;
+                db.OrderProduct.Add(model);
+                db.SaveChanges();
+                int id = model.ID;
 
+                foreach (var item in order)
+                {
+                    OrderProductDetail2 O = new OrderProductDetail2();
+                    O.ProductID = item.ProductID;
+                    O.Amount = item.Amount;
+                    O.OrerProductID = id;
+                    db.OrderProductDetail2.Add(O);
+                }
+                db.SaveChanges();
+                result = "Success! Order Is Complete!";
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
         // GET: OrderProducts/Details/5
         public ActionResult Details(int? id)
         {
@@ -76,6 +76,7 @@ namespace FastFoodStore.Controllers
         // GET: OrderProducts/Create
         public ActionResult Create()
         {
+            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
             return View();
         }
 
